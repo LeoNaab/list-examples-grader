@@ -29,4 +29,9 @@ else
     echo "compiled"
 fi
 
-java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar"  org.junit.runner.JUnitCore TestListExamples
+java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar"  org.junit.runner.JUnitCore TestListExamples > junit-errors.txt
+
+if grep -q "FAILURES!!!" junit-errors.txt
+then
+    echo "You had at least one failing test, you fail"
+fi
